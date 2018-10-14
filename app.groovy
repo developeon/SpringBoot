@@ -1,11 +1,30 @@
-@RestController
-class App{
-    @RequestMapping("/")
-    def home(){
-        def header = "<html><body>"
-        def footer = "</body></html>"
-        def content = "<h1>Hello World</h1>"
+@Grab("thymeleaf-spring5")
 
-        header + content + footer
-    }
+@Controller
+class App {
+  
+  @RequestMapping(value="/", method = RequestMethod.GET)
+  @ResponseBody
+  def home(ModelAndView mav){
+    mav.setViewName("home")
+    mav
+  }
+
+  @RequestMapping(value="/send", method = RequestMethod.POST)
+  @ResponseBody
+  def send1(@RequestParam("name")String name, @RequestParam("msg")String msg, ModelAndView mav){
+    mav.setViewName("home")
+    mav.addObject("name", name + "POST")
+    mav.addObject("msg", msg + "POST")
+    mav
+  }
+
+  @RequestMapping(value="/send", method = RequestMethod.GET)
+  @ResponseBody
+  def send2(@RequestParam("name")String name, @RequestParam("msg")String msg, ModelAndView mav){
+    mav.setViewName("home")
+    mav.addObject("name", name + "GET")
+    mav.addObject("msg", msg + "GET")
+    mav
+  }
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8"/>
+    <title>인덱스 페이지</title>
+    <style>
+        h1{
+            font-size: 18pt;
+            font-weight: bold;
+            color: gray;
+        }
+        body{
+            font-size: 13pt;
+            color: gray;
+            margin:  5px 25px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/send">
+        <input type="text" name="name" th:value="${name}" value="무명"/><br/>
+        <input type="text" name="msg" th:value="${msg}" value="안녕하세요"/><br/>
+        <input type="submit" value="클릭하세요"/>
+    </form>
+    <h1>안녕하세요 <span th:text="${name}">무명</span>님</h1>
+    <p th:text="${msg}">반갑습니다.</p>
+</body>
+</html>
